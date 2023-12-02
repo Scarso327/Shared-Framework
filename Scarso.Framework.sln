@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Domain", "src\Core\Scarso.Framework.Domain\Scarso.Framework.Domain.csproj", "{3ECAAF89-4457-4676-BA68-9F96F31B5D98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Infrastructure.EntityFramework", "src\Infrastructure\Scarso.Framework.Infrastructure.EntityFramework\Scarso.Framework.Infrastructure.EntityFramework.csproj", "{BE25B744-05D1-4B53-B8C3-D328EF68FC2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{09115E0A-3366-4FBA-86BA-AE4435EB4853}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4E851838-C2A9-47C1-A1E6-720BAF07E56F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{14172E0B-FE0C-4953-8DE3-DA90EF391BA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.AspNetCore", "src\Presentation\Scarso.Framework.AspNetCore\Scarso.Framework.AspNetCore.csproj", "{47015059-0023-47EE-94F7-7C6B695F14FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ECAAF89-4457-4676-BA68-9F96F31B5D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECAAF89-4457-4676-BA68-9F96F31B5D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECAAF89-4457-4676-BA68-9F96F31B5D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECAAF89-4457-4676-BA68-9F96F31B5D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE25B744-05D1-4B53-B8C3-D328EF68FC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE25B744-05D1-4B53-B8C3-D328EF68FC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE25B744-05D1-4B53-B8C3-D328EF68FC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE25B744-05D1-4B53-B8C3-D328EF68FC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47015059-0023-47EE-94F7-7C6B695F14FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47015059-0023-47EE-94F7-7C6B695F14FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47015059-0023-47EE-94F7-7C6B695F14FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47015059-0023-47EE-94F7-7C6B695F14FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3ECAAF89-4457-4676-BA68-9F96F31B5D98} = {4E851838-C2A9-47C1-A1E6-720BAF07E56F}
+		{BE25B744-05D1-4B53-B8C3-D328EF68FC2B} = {09115E0A-3366-4FBA-86BA-AE4435EB4853}
+		{47015059-0023-47EE-94F7-7C6B695F14FA} = {14172E0B-FE0C-4953-8DE3-DA90EF391BA9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FBEAD0D-072B-4701-A94C-C34B9E5E14E4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,44 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Scarso.Framework.Domain.Entities.Interfaces;
+using Scarso.Framework.Domain.Events.Services;
+using Scarso.Framework.Domain.MultiTenancy.Interfaces;
+using Scarso.Framework.Domain.MultiTenancy.Services;
+using Scarso.Framework.Domain.Persistence.Interfaces;
+using Scarso.Framework.Infrastructure.EntityFramework.Persistence.Extensions;
+
+namespace Scarso.Framework.Infrastructure.EntityFramework.Persistence;
+
+public abstract class BaseDbContext : DbContext, IUnitOfWork
+{
+    private readonly ICurrentTenant _currentTenant;
+    private readonly IDomainEventDispatcher? _domainEventDispatcher;
+
+    protected BaseDbContext(DbContextOptions options, ICurrentTenant currentTenant) : base(options)
+        => _currentTenant = currentTenant;
+
+    protected BaseDbContext(DbContextOptions options, ICurrentTenant currentTenant, IDomainEventDispatcher domainEventDispatcher)
+        : this(options, currentTenant)
+        => _domainEventDispatcher = domainEventDispatcher;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyGlobalFilters<IMustHaveTenant>(e => e.TenantId == _currentTenant.Tenant!.Id);
+        modelBuilder.ApplyGlobalFilters<IMayHaveTenant>(e => !e.TenantId.HasValue || (_currentTenant.Tenant != null && e.TenantId == _currentTenant.Tenant.Id));
+    }
+
+    public new async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        var entitiesWithDomainEvents = ChangeTracker.Entries<IHasDomainEvents>()
+            .Select(e => e.Entity)
+            .Where(e => e.HasDomainEvents())
+            .ToArray();
+
+        _ = await base.SaveChangesAsync(cancellationToken);
+
+        if (_domainEventDispatcher is not null)
+            await _domainEventDispatcher.DispatchAsync(entitiesWithDomainEvents, cancellationToken);
+    }
+}
