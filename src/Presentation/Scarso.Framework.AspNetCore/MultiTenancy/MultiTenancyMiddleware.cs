@@ -9,12 +9,12 @@ namespace Scarso.Framework.AspNetCore.MultiTenancy;
 
 internal class MultiTenancyMiddleware(RequestDelegate _next)
 {
-    public Task Invoke(HttpContext httpContext, ITenantResolver tenantResolver, ICurrentTenant currentTenant, IOptions<MultiTenancyConfig> options)
+    public Task Invoke(HttpContext httpContext, ITenantResolver tenantResolver, ICurrentTenant currentTenant, ITenantStore tenantStore, IOptions<MultiTenancyConfig> options)
     {
         var tenantId = tenantResolver.ResolveTenantId();
 
-        if (tenantId is not null)
-            currentTenant.SetTenantById(tenantId);
+        if (tenantId.HasValue)
+            currentTenant.SetTenant(tenantStore.Get(tenantId.Value));
 
         if (options.Value is null)
             throw new MissingConfigException(typeof(MultiTenancyConfig));

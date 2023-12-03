@@ -6,5 +6,5 @@ public interface ICurrentTenant
 {
     public ITenant? Tenant { get; }
 
-    public void SetTenantById(Guid? tenant);
+    public void SetTenant(ITenant? tenant);
 }

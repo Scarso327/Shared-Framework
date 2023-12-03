@@ -2,4 +2,7 @@
 
 namespace Scarso.Framework.Domain.MultiTenancy.Interfaces;
 
-public interface ITenant : IEntity;
+public interface ITenant : IEntity
+{
+    public string SubDomain { get; set; }
+}

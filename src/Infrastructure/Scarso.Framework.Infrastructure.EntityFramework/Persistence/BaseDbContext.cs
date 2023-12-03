@@ -14,6 +14,10 @@ public abstract class BaseDbContext : DbContext, IUnitOfWork
     private readonly ICurrentTenant _currentTenant;
     private readonly IDomainEventDispatcher? _domainEventDispatcher;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    protected BaseDbContext() : base() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
     protected BaseDbContext(DbContextOptions options, ICurrentTenant currentTenant) : base(options)
         => _currentTenant = currentTenant;
 

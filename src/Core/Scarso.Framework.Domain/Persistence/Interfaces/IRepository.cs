@@ -1,4 +1,5 @@
 ﻿using Scarso.Framework.Domain.Entities.Interfaces;
+using System.Linq.Expressions;
 
 namespace Scarso.Framework.Domain.Persistence.Interfaces;
 
@@ -15,6 +16,10 @@ public interface IRepository<T> where T : class, IEntity
     public Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
 
     public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
+    public T? SingleOrDefault(Expression<Func<T, bool>> expression);
+
+    public Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default);
 
     public void Update(T entity);
 

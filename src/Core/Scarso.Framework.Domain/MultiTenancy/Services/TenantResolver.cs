@@ -1,18 +1,22 @@
-﻿
+﻿using Microsoft.Extensions.Options;
+using Scarso.Framework.Domain.Common.Exceptions;
 using Scarso.Framework.Domain.MultiTenancy.Configuration;
 
 namespace Scarso.Framework.Domain.MultiTenancy.Services;
 
-public class TenantResolver(MultiTenancyConfig config, IServiceProvider serviceProvider) : ITenantResolver
+public class TenantResolver(IOptions<MultiTenancyConfig> config, IServiceProvider serviceProvider) : ITenantResolver
 {
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
+    private readonly MultiTenancyConfig _config = config.Value ?? throw new MissingConfigException(typeof(MultiTenancyConfig));
+
     public Guid? ResolveTenantId()
     {
-        if (config.ResolverTypes.Count == 0)
+        if (_config.ResolverTypes.Count == 0)
             return null;
 
-        foreach (var resolverType in config.ResolverTypes)
+        foreach (var resolverType in _config.ResolverTypes)
         {
-            if (serviceProvider.GetService(resolverType) is not ITenantResolverMethod resolver) continue;
+            if (_serviceProvider.GetService(resolverType) is not ITenantResolverMethod resolver) continue;
 
             var tenantId = resolver.ResolveTenantId();
 

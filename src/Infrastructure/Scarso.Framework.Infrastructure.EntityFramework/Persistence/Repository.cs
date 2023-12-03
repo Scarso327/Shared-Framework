@@ -1,14 +1,14 @@
-﻿using Scarso.Framework.Domain.Entities.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Scarso.Framework.Domain.Entities.Interfaces;
 using Scarso.Framework.Domain.Persistence.Interfaces;
+using System.Linq.Expressions;
 
 namespace Scarso.Framework.Infrastructure.EntityFramework.Persistence;
 
-public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity
+public class Repository<T>(BaseDbContext context) : IRepository<T> where T : class, IEntity
 {
-    private readonly BaseDbContext _context;
+    private readonly BaseDbContext _context = context;
     public IUnitOfWork UnitOfWork => _context;
-
-    protected BaseRepository(BaseDbContext context) => _context = context;
 
     public void Add(T entity) => _context.Set<T>().Add(entity);
 
@@ -22,6 +22,12 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         => await _context.Set<T>().FindAsync(new object[] { id }, cancellationToken);
+
+    public T? SingleOrDefault(Expression<Func<T, bool>> expression)
+        => _context.Set<T>().SingleOrDefault(expression);
+
+    public Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default)
+        => _context.Set<T>().SingleOrDefaultAsync(expression, cancellationToken: cancellationToken);
 
     public void Update(T entity) => _context.Set<T>().Update(entity);
 
