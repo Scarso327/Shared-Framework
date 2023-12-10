@@ -19,11 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{322F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APITenantResolution", "APITenantResolution", "{A3FD5277-2AF3-4118-BC8E-91733FFC4CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Samples.APITenantResolution.API", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.API\Scarso.Framework.Samples.APITenantResolution.API.csproj", "{A472322A-1947-4BB4-801D-CBF99979A115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarso.Framework.Samples.APITenantResolution.API", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.API\Scarso.Framework.Samples.APITenantResolution.API.csproj", "{A472322A-1947-4BB4-801D-CBF99979A115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Samples.APITenantResolution.Domain", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.Domain\Scarso.Framework.Samples.APITenantResolution.Domain.csproj", "{5D97B630-CE90-4314-A8EB-98E434C1A0BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarso.Framework.Samples.APITenantResolution.Domain", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.Domain\Scarso.Framework.Samples.APITenantResolution.Domain.csproj", "{5D97B630-CE90-4314-A8EB-98E434C1A0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Samples.APITenantResolution.Infrastructure", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.Infrastructure\Scarso.Framework.Samples.APITenantResolution.Infrastructure.csproj", "{5CD085B2-9B0E-40CB-A3DD-7B67329263A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarso.Framework.Samples.APITenantResolution.Infrastructure", "samples\APITenantResolution\Scarso.Framework.Samples.APITenantResolution.Infrastructure\Scarso.Framework.Samples.APITenantResolution.Infrastructure.csproj", "{5CD085B2-9B0E-40CB-A3DD-7B67329263A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarso.Framework.Domain.UnitTests", "tests\Scarso.Framework.Domain.UnitTests\Scarso.Framework.Domain.UnitTests.csproj", "{F32CCC7D-53F6-4C4F-9506-23C125A31B55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{46062559-B106-49BE-8935-86627599F181}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{5CD085B2-9B0E-40CB-A3DD-7B67329263A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD085B2-9B0E-40CB-A3DD-7B67329263A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CD085B2-9B0E-40CB-A3DD-7B67329263A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32CCC7D-53F6-4C4F-9506-23C125A31B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32CCC7D-53F6-4C4F-9506-23C125A31B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32CCC7D-53F6-4C4F-9506-23C125A31B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32CCC7D-53F6-4C4F-9506-23C125A31B55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{A472322A-1947-4BB4-801D-CBF99979A115} = {A3FD5277-2AF3-4118-BC8E-91733FFC4CD9}
 		{5D97B630-CE90-4314-A8EB-98E434C1A0BC} = {A3FD5277-2AF3-4118-BC8E-91733FFC4CD9}
 		{5CD085B2-9B0E-40CB-A3DD-7B67329263A3} = {A3FD5277-2AF3-4118-BC8E-91733FFC4CD9}
+		{F32CCC7D-53F6-4C4F-9506-23C125A31B55} = {46062559-B106-49BE-8935-86627599F181}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FBEAD0D-072B-4701-A94C-C34B9E5E14E4}

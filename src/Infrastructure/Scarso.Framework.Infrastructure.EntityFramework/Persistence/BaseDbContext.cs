@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Scarso.Framework.Domain.Entities.Auditing.Interfaces;
 using Scarso.Framework.Domain.Entities.Interfaces;
 using Scarso.Framework.Domain.Events.Services;
 using Scarso.Framework.Domain.MultiTenancy.Interfaces;
@@ -31,7 +32,8 @@ public abstract class BaseDbContext : DbContext, IUnitOfWork
 
         modelBuilder.ApplyGlobalFilters<IMustHaveTenant>(e => e.TenantId == _currentTenant.Tenant!.Id);
         modelBuilder.ApplyGlobalFilters<IMayHaveTenant>(e => !e.TenantId.HasValue || (_currentTenant.Tenant != null && e.TenantId == _currentTenant.Tenant.Id));
-    }
+		modelBuilder.ApplyGlobalFilters<ISoftDelete>(e => !e.IsDeleted);
+	}
 
     public new async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
