@@ -30,8 +30,8 @@ public abstract class BaseDbContext : DbContext, IUnitOfWork
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyGlobalFilters<IMustHaveTenant>(e => e.TenantId == _currentTenant.Tenant!.Id);
-        modelBuilder.ApplyGlobalFilters<IMayHaveTenant>(e => !e.TenantId.HasValue || (_currentTenant.Tenant != null && e.TenantId == _currentTenant.Tenant.Id));
+        modelBuilder.ApplyGlobalFilters<IMustHaveTenant>(e => e.TenantId == _currentTenant.Value!.Id);
+        modelBuilder.ApplyGlobalFilters<IMayHaveTenant>(e => !e.TenantId.HasValue || (_currentTenant.Value != null && e.TenantId == _currentTenant.Value.Id));
 		modelBuilder.ApplyGlobalFilters<ISoftDelete>(e => !e.IsDeleted);
 	}
 

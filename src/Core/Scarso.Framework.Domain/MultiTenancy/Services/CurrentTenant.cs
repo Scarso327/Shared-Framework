@@ -4,8 +4,28 @@ namespace Scarso.Framework.Domain.MultiTenancy.Services;
 
 public class CurrentTenant : ICurrentTenant
 {
-    private ITenant? _tenant;
-    public ITenant? Tenant => _tenant;
+    private static readonly AsyncLocal<CurrentTenantHolder> _holder = new();
 
-    public void SetTenant(ITenant? tenant) => _tenant = tenant;
+    public ITenant? Value
+    {
+        get => _holder.Value?.Tenant;
+        set
+        {
+            var holder = _holder.Value;
+
+            if (holder is not null)
+                holder.Tenant = null;
+
+            if (value is not null)
+                _holder.Value = new CurrentTenantHolder()
+                {
+                    Tenant = value
+                };
+        }
+    }
+
+    public class CurrentTenantHolder
+    {
+        public ITenant? Tenant { get; set; }
+    }
 }

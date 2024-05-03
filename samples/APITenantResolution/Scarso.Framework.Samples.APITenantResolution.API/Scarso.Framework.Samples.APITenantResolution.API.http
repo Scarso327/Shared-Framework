@@ -1,12 +1,12 @@
-@Scarso.Framework.Samples.APITenantResolution.API_HostAddress = http://localhost:5269
+@API_HostAddress = http://localhost:5269
 
 
-GET {{Scarso.Framework.Samples.APITenantResolution.API_HostAddress}}/home/
+GET {{API_HostAddress}}/Home/
 Accept: application/json
 
 ###
 
-GET {{Scarso.Framework.Samples.APITenantResolution.API_HostAddress}}/home/
+GET {{API_HostAddress}}/Home/
 Accept: application/json
 x-tenantid: 0C7AA27D-8C92-458C-8835-C27B89538E1D
 

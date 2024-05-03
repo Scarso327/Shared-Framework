@@ -14,12 +14,12 @@ internal class MultiTenancyMiddleware(RequestDelegate _next)
         var tenantId = tenantResolver.ResolveTenantId();
 
         if (tenantId.HasValue)
-            currentTenant.SetTenant(tenantStore.Get(tenantId.Value));
+            currentTenant.Value = tenantStore.Get(tenantId.Value);
 
         if (options.Value is null)
             throw new MissingConfigException(typeof(MultiTenancyConfig));
 
-        if (options.Value.IsRequired && currentTenant.Tenant is null)
+        if (options.Value.IsRequired && !currentTenant.HasValue)
             throw new FailedToResolveTenantException();
 
         return _next(httpContext);

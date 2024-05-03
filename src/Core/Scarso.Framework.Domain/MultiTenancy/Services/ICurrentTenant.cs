@@ -4,7 +4,7 @@ namespace Scarso.Framework.Domain.MultiTenancy.Services;
 
 public interface ICurrentTenant
 {
-    public ITenant? Tenant { get; }
+    public ITenant? Value { get; set; }
 
-    public void SetTenant(ITenant? tenant);
+    public bool HasValue => Value is not null;
 }
